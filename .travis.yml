@@ -1,6 +1,35 @@
 language: python
-python: 
-    - "2.7"
-script: python test.py
+env:
+  DOCKER_COMPOSE_VERSION: 1.18.0
 
-script: locust -f locustfile.py -c 200 -r 10 -n 10000 --no-web --host=http://localhost/
+before_install:
+    # update and install newer docker engine
+    - sudo apt-get update
+    - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
+    
+    # check the version of docker
+    - docker-compose --version
+    
+    
+    - sudo rm /usr/local/bin/docker-compose
+    - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+    - chmod +x docker-compose
+    - sudo mv docker-compose /usr/local/bin
+
+    - docker-compose --version
+
+    - docker-compose pull
+    - docker-compose build
+    - docker-compose up -d
+
+    - docker ps
+
+
+
+python: 
+    - "2.7.14"
+
+install:
+    - pip install -r requirements.txt
+
+script: locust -f locustfile.py -c 200 -r 10 -n 6000 --no-web --host=http://localhost/
