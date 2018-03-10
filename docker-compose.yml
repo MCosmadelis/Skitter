@@ -3,13 +3,13 @@ version: '3'
 services:
   web_1:
     image: web1img
-    build: ./web1
+    build: ./web
     container_name: webhost1
     hostname: webhost1
 
   web_2:
     image: web2img
-    build: ./web2
+    build: ./web
     container_name: webhost2
     hostname: webhost2
 
@@ -21,3 +21,10 @@ services:
     container_name: nginxload
     hostname: nginxload
 
+  sql:
+    image: mysql
+    volumes:
+        - ./skitter.sql:/docker-entrypoint-initdb.d/skitter.sql
+        - ./mysqldata:/var/lib/mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=password
