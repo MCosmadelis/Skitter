@@ -1,0 +1,10 @@
+mysqldata
+.DS_Store
+Authentication/Signup-Signin/out
+Authentication/Signup-Signin/build/classes
+Authentication/Signup-Signin/build/resources
+Authentication/Signup-Signin/build/tmp
+Authentication/Signup-Signin/.gradle
+Authentication/.DS_Store
+Authentication/Signup-Signin/.idea
+Authentication/Signup-Signin/src/main/java/.gradle

@@ -5,13 +5,10 @@ USE skitter;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS follows;
 
-
 CREATE TABLE users (
 	username varchar(20) not null,
-        pw_hash varchar(100) not null,
         email varchar(30) not null,
-        first_name varchar(30) not null,
-        last_name varchar(30) not null,
+        name varchar(50) not null,
         CONSTRAINT username_pk PRIMARY KEY(username)
 );
 
@@ -26,4 +23,12 @@ CREATE TABLE follows (
 );
 
 
+CREATE TABLE sessions (
+        username varchar(20) not null,
+        sessionid varchar(40) not null,
+        UNIQUE (username),
+        CONSTRAINT sessions_pk PRIMARY KEY(username),
+	FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
 
