@@ -28,8 +28,8 @@ echo '
 
 	<div class="topnav">
 	  <a class="navbar-brand" href="/home.php">Skitter</a>
-	  <a class="active" href="/home.php">Home</a>
-	  <a href="/profile.php">Profile</a>
+	  <a href="/home.php">Home</a>
+	  <a class="active" href="/profile.php">Profile</a>
 	  <a href="/settings.php">Settings</a>
 	  <div class="search-container">
 	    <form action="/search.php">
@@ -38,8 +38,8 @@ echo '
 	    </form>
 	  </div>
 	</div>
-	<div class="container">
-	<div class="left">
+        <div class="container">
+        <div class="left">
         Profile picture, username, followers and following will go here.
         </div>
         <div class="center">
@@ -48,10 +48,9 @@ echo '
                 <br>
                 <button style="float:right;" type="submit">Submit</button>
             </form>
-            <p>Skits go here</p>
+            <p>User Specific Skits go here</p>
         </div>
-
-	</div>
+        </div>
 
 
     </body>
