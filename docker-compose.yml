@@ -31,8 +31,6 @@ services:
     volumes:
         - mysql-data
         - ./skitter.sql:/docker-entrypoint-initdb.d/skitter.sql
-    ports: 
-        - "3306:3306"
     environment:
         - MYSQL_ROOT_PASSWORD=password
 
@@ -41,6 +39,3 @@ services:
       container_name: auth
       build: ./Authentication
       hostname: auth
-      ports:
-          - "8080:8080"
-

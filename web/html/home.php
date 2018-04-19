@@ -11,6 +11,53 @@ if(!isAuthenticated($_COOKIE['skitter'])){
 }
 
 
+
+if($stmt = $mysqli->prepare("select name from users inner join sessions on users.username = sessions.username where sessions.sessionid=?")){
+    if($stmt->bind_param("s", $_COOKIE['skitter'])){
+        if(!$stmt->execute()){
+	    die("Error - Issue executing prepared statement: " . mysqli_error($mysqli));
+        }
+        if($res = $stmt->get_result()){
+	    $row = $res->fetch_assoc();
+	    if($res->num_rows !== 1){
+	        die('Error - There is an issue with the database, contact your administrator');
+	    }else{
+	        $username = $row['name'];
+	    }
+        }else{
+	     die("Error - Getting results: " . mysqli_error($mysqli));
+        }
+    }else{
+         die("Error - Issue binding prepared statement: " . mysqli_error($mysqli));
+    }
+}else{
+    die("Error - Issue preparing statement: " . mysqli_error($mysqli));
+}
+
+if($stmt = $mysqli->prepare("select img from images inner join sessions on images.username = sessions.username where sessions.sessionid=?")){
+    if($stmt->bind_param("s", $_COOKIE['skitter'])){
+        if(!$stmt->execute()){
+	    die("Error - Issue executing prepared statement: " . mysqli_error($mysqli));
+        }
+        if($res = $stmt->get_result()){
+	    $row = $res->fetch_assoc();
+	    if($res->num_rows !== 1){
+		$bimage=NULL;
+	        //die('Error - There is an issue with the database, contact your administrator');
+	    }else{
+	        $bimage = base64_encode( $row['img'] );
+	    }
+        }else{
+	     die("Error - Getting results: " . mysqli_error($mysqli));
+        }
+    }else{
+         die("Error - Issue binding prepared statement: " . mysqli_error($mysqli));
+    }
+}else{
+    die("Error - Issue preparing statement: " . mysqli_error($mysqli));
+}
+
+
 echo '
 <!DOCTYPE HTML>
 <html>
@@ -40,8 +87,9 @@ echo '
 	</div>
 	<div class="container">
 	<div class="left">
-        Profile picture, username, followers and following will go here.
-        </div>
+	<img style="width:300px; border-radius:50%" alt="Avatar" src="data:image/jpeg;base64,'.$bimage.'"/>
+		<br><h2 style:"margin-left:-50px;">' . $username . '</h2>
+	</div>
         <div class="center">
             <form action="/newSkit.php">
                 <textarea id="subject" name="subject" placeholder="What\'s on your mind?" style="height:75px;width:440px;resize:none"></textarea>
@@ -50,7 +98,6 @@ echo '
             </form>
             <p>Skits go here</p>
         </div>
-
 	</div>
 
 

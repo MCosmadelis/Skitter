@@ -12,6 +12,12 @@ CREATE TABLE users (
         CONSTRAINT username_pk PRIMARY KEY(username)
 );
 
+CREATE TABLE images (
+        username varchar(20) not null,
+        img longblob,
+        CONSTRAINT images_pk PRIMARY KEY(username),
+        FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 CREATE TABLE follows (
         id int not null,

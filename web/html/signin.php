@@ -24,6 +24,7 @@ if(!empty($_POST)) {
     if($response == "fail"){
             die("Incorrect Credentials");
     }
+    $_SESSION['user'] = $_POST['username'];
     setcookie("skitter", $response, time() + (86400 * 30), "/");
     header("Location: home.php");
 
