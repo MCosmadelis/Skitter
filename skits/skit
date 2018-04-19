@@ -1,0 +1,13 @@
+curl -X PUT localhost:9200/skits -H 'Content-Type: application/json' -d
+'{
+    "mappings": {
+        "doc": {
+            "properties":{
+                "timestamp": {"type": "date"}, 
+                "username":{"type":"text"}
+                "skit":{"type":"text"}, 
+            }
+        }
+    }
+}'
+

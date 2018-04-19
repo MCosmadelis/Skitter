@@ -22,8 +22,9 @@ public class DBConnect {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection(
                     URL,"root","password");
-            Statement stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select * from users where username='" + user + "'");
+            PreparedStatement stmt = con.prepareStatement("select * from users where username=?");
+            stmt.setString(1, user);
+            ResultSet res = stmt.executeQuery();
 
             if (res.isBeforeFirst()) {
                 // check if the user has a session
@@ -32,14 +33,17 @@ public class DBConnect {
                 ResultSet rs = ses.executeQuery();
                 if (!rs.isBeforeFirst()) {
                     PreparedStatement ins = con.prepareStatement("insert into sessions (username,sessionid) "
-                            + "values ('" + user + "','" + sessionID +"')");
+                            + "values (?,?)");
+                    ins.setString(1, user);
+                    ins.setString(2, sessionID);
                     ins.executeUpdate();
 
                 }
                 else{
                     PreparedStatement rep = con.prepareStatement(
-                            "replace into sessions VALUES ('"+ user+"','"+ sessionID + "'"
-                    +")");
+                            "replace into sessions VALUES (?,?)");
+                    rep.setString(1, user);
+                    rep.setString(2, sessionID);
                     rep.executeUpdate();
                 }
             }
@@ -56,8 +60,9 @@ public class DBConnect {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection(
                     URL,"root","password");
-            Statement stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select * from sessions where sessionid='" + sessionID + "'");
+            PreparedStatement stmt = con.prepareStatement("select * from sessions where sessionid=?");
+            stmt.setString(1, sessionID);
+            ResultSet res = stmt.executeQuery();
             if (res.isBeforeFirst()){
                 return true;
             }
@@ -74,16 +79,21 @@ public class DBConnect {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     URL, "root", "password");
-            Statement stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select * from users where username='" + username + "'");
+            PreparedStatement stmt = con.prepareStatement("select * from users where username=?");
+            stmt.setString(1, username);
+            ResultSet res = stmt.executeQuery();
+
 
             if (res.isBeforeFirst()) {
                 return "Account already exists";
             }
 
             PreparedStatement create = con.prepareStatement(
-                    "insert into users values ('" + username + "','" + email + "','"+
-                            name +"')");
+                    "insert into users values (?,?,?)");
+            create.setString(1, username);
+            create.setString(2, email);
+            create.setString(3, name);
+
             create.executeUpdate();
 
         } catch (Exception e){

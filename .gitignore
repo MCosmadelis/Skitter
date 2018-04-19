@@ -1,6 +1,8 @@
 mysqldata
 docker-compose.yml.bak
 .DS_Store
+skits/example.json
+skits/skit
 Authentication/Signup-Signin/out
 Authentication/Signup-Signin/build/classes
 Authentication/Signup-Signin/build/resources
