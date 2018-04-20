@@ -31,6 +31,7 @@ echo '
 	  <a href="/home.php">Home</a>
 	  <a class="active" href="/profile.php">Profile</a>
 	  <a href="/settings.php">Settings</a>
+          <a href="/logout.php">Logout</a>
 	  <div class="search-container">
 	    <form action="/search.php">
 	      <input type="text" placeholder="Search.." name="search">

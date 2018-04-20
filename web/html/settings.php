@@ -30,7 +30,8 @@ echo '
 	  <a class="navbar-brand" href="/home.php">Skitter</a>
 	  <a href="/home.php">Home</a>
 	  <a href="/profile.php">Profile</a>
-	  <a class="active" href="/settings.php">Settings</a>
+          <a class="active" href="/settings.php">Settings</a>
+          <a href="/logout.php">Logout</a>
 	  <div class="search-container">
 	    <form action="/search.php">
 	      <input type="text" placeholder="Search.." name="search">
