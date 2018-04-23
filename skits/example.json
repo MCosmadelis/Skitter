@@ -1,2 +1,2 @@
 {"index":{"_index":"skits","_id":0}}
-{"type":"date","skit":"hello", "username":"michael"}
+{"type":"text","timestamp":"10:01","skit":"hello", "username":"michael"}

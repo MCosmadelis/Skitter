@@ -12,11 +12,14 @@ public class DBConnect {
     String URL = "jdbc:mysql://sqlserv:3306/skitter";
     public String createSession(String user){
         Random rand = new Random();
+        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+                "abcdefghijlkmnopqrstuvwxyz0123456789";
         String sessionID = "";
-        for(int i=0; i<40;i++){
-            Integer curr = new Integer(rand.nextInt(10));
-            sessionID = sessionID +curr.toString();
+        for(int i=0; i<30;i++){
+            Integer curr = new Integer(rand.nextInt(62));
+            sessionID = sessionID + ALPHA_NUMERIC_STRING.charAt(curr);
         }
+
         try{
             // check if user is registered
             Class.forName("com.mysql.jdbc.Driver");

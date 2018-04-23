@@ -25,7 +25,8 @@ function isAuthenticated($sessionID){
     $response = curl_exec($ch);
     curl_close($ch);
     if ($response == "invalid"){
-        die("User not authenticated");
+        echo 'User not authenticated';
+        return false;
     }
     return true;
 }
