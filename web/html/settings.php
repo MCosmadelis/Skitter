@@ -47,7 +47,6 @@ echo '
             <form action="/changeEmail.php" method="POST">
                 <input name="email" type="email" placeholder="Change Email" required>
             </form>
-            <button onclick="myFunction()">Try it</button>
 
            <form enctype="multipart/form-data" action="/changeProfileImage.php" method="post">
             <input id="image" type="file" name="image" />

@@ -10,8 +10,8 @@ if(!empty($_POST)) {
     }
 
     $data = array(
-        'username' => $_POST['username'],
-        'password' => $_POST['password'],
+        'username' => htmlspecialchars($_POST['username']),
+        'password' => htmlspecialchars($_POST['password']),
     );
     $url = 'http://auth:8080/signin';
     $ch = curl_init($url);

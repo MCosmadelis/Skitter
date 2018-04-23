@@ -13,9 +13,9 @@ if(!empty($_POST)) {
     }
 
     $data = array(
-        'username' => $_POST['username'],
-        'email' => $_POST['email'],
-        'name' => $_POST['name'],
+        'username' => htmlspecialchars($_POST['username']),
+        'email' => htmlspecialchars($_POST['email']),
+        'name' => htmlspecialchars($_POST['name']),
     );
     $url = 'http://auth:8080/signup';
     $ch = curl_init($url);

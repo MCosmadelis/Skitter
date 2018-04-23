@@ -22,7 +22,7 @@ if(isset($_POST['email'])){
                 }
                 $prep = "UPDATE users SET email=? WHERE username=?";
                 if($stmt = $mysqli->prepare($prep)){
-                    if($stmt->bind_param("ss", $_POST['email'], $row['username'])){
+                    if($stmt->bind_param("ss", htmlspecialchars($_POST['email']), $row['username'])){
                         if(!$stmt->execute()){
                             die("Error - Issue executing prepared statement: " . mysqli_error($mysqli));
                         }

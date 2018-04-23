@@ -22,7 +22,7 @@ if(isset($_POST['displayname'])){
                 }
                 $prep = "UPDATE users SET name=? WHERE username=?";
                 if($stmt = $mysqli->prepare($prep)){
-                    if($stmt->bind_param("ss", $_POST['displayname'], $row['username'])){
+                    if($stmt->bind_param("ss", htmlspecialchars($_POST['displayname']), $row['username'])){
                         if(!$stmt->execute()){
                             die("Error - Issue executing prepared statement: " . mysqli_error($mysqli));
                         }
@@ -30,7 +30,8 @@ if(isset($_POST['displayname'])){
                         die("Error - Issue binding prepared statement: " . mysqli_error($mysqli));
                     }
                     if($stmt->close()){
-                            echo "Value updated succesfully";
+                        echo "Value updated succesfully";
+                        header("Location: /home.php");
                     }else{
                         die("Error - Failed to close prepared statement " . mysqli_error($mysqli));
                     }

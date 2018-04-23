@@ -88,8 +88,8 @@ echo '
 	</div>
 	<div class="container">
 	<div class="left">
-	<img style="width:300px; border-radius:50%" alt="Avatar" src="data:image/jpeg;base64,'.$bimage.'"/>
-		<br><h2 style:"margin-left:-50px;">' . $username . '</h2>
+	<img style="width:300px; border-radius:50%" alt="Set your profile picture in Settings!" src="data:image/jpeg;base64,'.$bimage.'"/>
+		<br><h2 style:"margin-left:-50px;">' . htmlspecialchars($username) . '</h2>
 	</div>
         <div class="center">
             <form action="/newSkit.php">

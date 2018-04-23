@@ -20,11 +20,11 @@ $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
 $extensions= array("jpeg","jpg","png");
 
 if(in_array($file_ext,$extensions)=== false){
-    echo 'Extension not allowed, please choose a JPEG or PNG file';
+    die('Extension not allowed, please choose a JPEG or PNG file');
 }
 
 if($file_size > 2097152){
-    echo 'File size must be 2 MB or less';
+    die('File size must be 2 MB or less');
 }
 
 

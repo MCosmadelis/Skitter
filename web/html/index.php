@@ -18,8 +18,8 @@
 <link rel="stylesheet" href="css/login.css">
 <input type='checkbox' id='form-switch'>
 <form id='login-form' action="/signin.php" method='post'>
-  <input name="username" type="text" placeholder="Username" required>
-  <input name="password" type="password" placeholder="Password" required>
+  <input name="username" type="text" placeholder="RIT Username" required>
+  <input name="password" type="password" placeholder="RIT Password" required>
   <button type='submit'>Login</button>
   <label for='form-switch'><span>Register</span></label>
 </form>
